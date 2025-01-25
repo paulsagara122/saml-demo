@@ -1,4 +1,11 @@
------BEGIN CERTIFICATE-----
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://localhost:9090/sso">
+    <IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:9090/sso"/>
+        <KeyDescriptor use="signing">
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+                        <![CDATA[
 MIIFbzCCA1egAwIBAgIUEq7UqBs/EPN7HPmA2Ry3Xln/i6owDQYJKoZIhvcNAQEL
 BQAwRzELMAkGA1UEBhMCSU4xFTATBgNVBAgMDEthcm5hdGFrYQ07DTEhMB8GA1UE
 CgwYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMB4XDTI1MDExOTEzNTY1M1oXDTI2
@@ -29,4 +36,10 @@ hjSEHdvr7z8Y6JMe0Sw4KG+xvVkFta14MC4Cq6sV6htZZKu+x61PZqum7vxqpvwI
 xR+phIkqfFTxc2Wm+guqdQ6DrMhQDGC88JU6GOGjUAbTwnNAWVlIdbvYCiFTUH0Q
 J7YzbgHxfhPOpYeJQzMWam93W/tQ33YIY6Pk/JJLxPCoHm3eXGRKclmdywZ7dc0r
 LhcQ
------END CERTIFICATE-----
+                    ]]>
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+    </IDPSSODescriptor>
+</EntityDescriptor>

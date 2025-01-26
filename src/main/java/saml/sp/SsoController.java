@@ -1,9 +1,14 @@
 package saml.sp;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
@@ -38,10 +43,18 @@ public class SsoController {
         // Validate the response (signature, conditions, issuer, etc.)
 
         // Extract user attributes and perform authentication
-
+        // If validation is successful, set the authentication
+        Authentication authentication = getAuthenticationFromSamlResponse();
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         // Redirect to the appropriate page upon successful validation
         return "redirect:/home";
     }
+
+    private Authentication getAuthenticationFromSamlResponse() {
+        UserDetails userDetails = FakeUserDetails.createFakeUser();
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+    }
+
 
     @GetMapping("saml2/authenticate/{registrationId}")
     public String authenticate(@PathVariable String registrationId) {

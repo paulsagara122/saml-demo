@@ -13,8 +13,8 @@ public class MySamlServiceProvider implements RelyingPartyRegistrationRepository
                 .withRegistrationId("my-saml-service-provider")
                 .entityId("service-provider-entity-id")
                 .assertingPartyDetails(details ->
-                        details.entityId("http://localhost:9090/sso")
-                                .singleSignOnServiceLocation("http://localhost:9090/sso")
+                        details.entityId("http://localhost:9090/api/v1/saml/auth/login")
+                                .singleSignOnServiceLocation("http://localhost:9090/api/v1/saml/auth/login")
                                 .wantAuthnRequestsSigned(false))
                 .build();
     }

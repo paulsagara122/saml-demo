@@ -24,8 +24,8 @@ public class SamlConfig {
                 .entityId("http://localhost:8080/saml/sp")
                 .registrationId("my-saml-sp")
                 .assertingPartyDetails(details ->
-                        details.entityId("http://localhost:9090/sso")
-                                .singleSignOnServiceLocation("http://localhost:9090/sso")
+                        details.entityId("http://localhost:9090/api/v1/saml/auth/login")
+                                .singleSignOnServiceLocation("http://localhost:9090/api/v1/saml/auth/login")
                                 .wantAuthnRequestsSigned(true)
                                 .verificationX509Credentials(c -> c.add(createVerificationCredential())))
                 .signingX509Credentials(c -> c.add(createSigningCredential()))

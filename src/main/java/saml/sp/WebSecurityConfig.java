@@ -24,13 +24,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SamlRequestLoggingFilter samlRequestLoggingFilter;
 
+    private static final String IDP_AUTH_URL = "/api/v1/saml/auth/**";
+    private static final String SP_AUTH_URL = "/sso/**";
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().ignoringAntMatchers("/api/v1/saml/auth/**") // Disable CSRF for /sso/*
+                .csrf().ignoringAntMatchers(IDP_AUTH_URL, SP_AUTH_URL) // Disable CSRF for /sso/*
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/saml/auth/**").permitAll()
+                .antMatchers(IDP_AUTH_URL, SP_AUTH_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .saml2Login()
